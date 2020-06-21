@@ -1,0 +1,14 @@
+.toggle-container {
+    display: flex;
+    flex-direction: row-reverse;
+    height: 56px;
+}
+
+.toggle-container ion-label {
+    font-size: 0.5em;
+}
+
+.toggle-container ion-toggle {
+    align-self: center;
+    zoom: 0.8;
+}
