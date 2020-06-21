@@ -62,7 +62,7 @@
       </ion-item-options>
       <ion-item>
         <div class="item-container">
-          <img
+          <img (click)="openDetails(movie)"
             [src]="movie.poster_path ? 'https://image.tmdb.org/t/p/w92/'+movie.poster_path : '../../assets/img-placeholder.png'"
           />
           <div class="item-info-container">

@@ -8,9 +8,11 @@ import {
   IonProgressBar,
   LoadingController,
   IonSelect,
+  ModalController,
 } from '@ionic/angular';
 import { timeout, delay } from 'rxjs/operators';
 import { of } from 'rxjs';
+import { MovieDetailsModalComponent } from '../shared/movie-details-modal/movie-details-modal.component';
 @Component({
   selector: 'app-tab1',
   templateUrl: 'tab1.page.html',
@@ -55,11 +57,21 @@ export class Tab1Page {
   constructor(
     private _moviesService: MoviesService,
     public platform: Platform,
-    public loadingController: LoadingController
+    public loadingController: LoadingController,
+    private modalController: ModalController
   ) {
     this.state.isLoading = true;
     this.fetchMovies();
     this._moviesService.getGenres().subscribe((re) => (this.genres = re));
+  }
+
+  async openDetails(movie: Movie): Promise<any> {
+    const x = await this.modalController.create({
+      component: MovieDetailsModalComponent,
+      componentProps: { 'movie': movie },
+    });
+
+    return await x.present();
   }
 
   private fetchMovies(data?: { page: number; genres?: number[] }): void {

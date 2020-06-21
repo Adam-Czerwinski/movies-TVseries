@@ -1,0 +1,35 @@
+.title-container {
+    text-align: end;
+}
+
+.title-container ion-button {
+    zoom: 0.7;
+}
+
+.title-container p {
+    text-align: left;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+ion-card-subtitle p{
+    margin-bottom: 0;
+}
+
+.landscape-details {
+    display: flex;
+    flex-direction: column;
+    padding-left: 20px;
+}
+
+.landscape-details p {
+    font-size: 16px;
+}
+
+.landscape-container {
+    display: flex;
+}
+
+.portrait-image-container{
+    text-align: center;
+}

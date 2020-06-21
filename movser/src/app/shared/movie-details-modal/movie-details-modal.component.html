@@ -1,0 +1,55 @@
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>
+        <div class="title-container">
+          <ion-button color="danger" (click)="onClose()">Zamknij</ion-button>
+          <p>{{ movie.title ? movie.title : movie.name }}</p>
+        </div>
+      </ion-card-title>
+      <ion-card-subtitle>
+        <p>
+          <ng-container *ngFor="let genre of movieGenres">
+            {{ genre + ', ' }}
+          </ng-container>
+        </p>
+      </ion-card-subtitle>
+    </ion-card-header>
+
+    <ion-card-content>
+      <div class="landscape-container">
+        <img
+          *ngIf="movie.poster_path && platform.isLandscape()"
+          [src]="'https://image.tmdb.org/t/p/w154/' + movie.poster_path"
+        />
+        <div class="landscape-details">
+          <p *ngIf="movie.title"><b>Tytuł</b>: {{ movie.title }}</p>
+          <p *ngIf="movie.name"><b>Tytuł</b>: {{ movie.name }}</p>
+          <p *ngIf="movie.original_title">
+            <b>Oryginalny tytuł</b>: {{ movie.original_title }}
+          </p>
+          <p *ngIf="movie.original_name">
+            <b>Oryginalny tytuł</b>: {{ movie.original_name }}
+          </p>
+          <p><b>Oryginalny język</b>: {{ movie.original_language }}</p>
+          <p><b>Opis</b>: {{ movie.overview }}</p>
+          <p><b>Popularność</b>: {{ movie.popularity }}</p>
+          <p *ngIf="movie.release_date">
+            <b>Data wydania</b>: {{ movie.release_date }}
+          </p>
+          <p *ngIf="movie.first_air_date">
+            <b>Pierwsza ekranizacja</b>: {{ movie.first_air_date }}
+          </p>
+          <p><b>Średnia ocena:</b> {{ movie.vote_average }}</p>
+          <p><b>Ilość głosów</b>: {{ movie.vote_count }}</p>
+        </div>
+      </div>
+      <div class="portrait-image-container">
+        <img
+        *ngIf="movie.poster_path && !platform.isLandscape()"
+        [src]="'https://image.tmdb.org/t/p/w185/' + movie.poster_path"
+      />
+      </div>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

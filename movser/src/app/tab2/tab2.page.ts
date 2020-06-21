@@ -8,10 +8,12 @@ import {
   IonProgressBar,
   LoadingController,
   IonSelect,
+  ModalController,
 } from '@ionic/angular';
 import { timeout, delay } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { Show } from '../model/show.model';
+import { MovieDetailsModalComponent } from '../shared/movie-details-modal/movie-details-modal.component';
 @Component({
   selector: 'app-tab2',
   templateUrl: 'tab2.page.html',
@@ -53,10 +55,20 @@ export class Tab2Page {
     await loading.present();
   }
 
+  async openDetails(movie: Movie): Promise<any> {
+    const x = await this.modalController.create({
+      component: MovieDetailsModalComponent,
+      componentProps: { movie: movie },
+    });
+
+    return await x.present();
+  }
+
   constructor(
     private _moviesService: MoviesService,
     public platform: Platform,
-    public loadingController: LoadingController
+    public loadingController: LoadingController,
+    private modalController: ModalController
   ) {
     this.state.isLoading = true;
     this.fetchMovies();
