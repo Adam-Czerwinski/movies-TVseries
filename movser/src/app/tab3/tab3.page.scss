@@ -1,0 +1,61 @@
+.logo {
+    display: none;
+    max-height: 200px;
+    padding: 20px;
+    padding-bottom: 0;
+}
+
+ion-card-content p{
+    text-align: center;
+}
+
+@media  (orientation: landscape) {
+    .logo.logo-primary-long {
+        max-height: 40px;
+        display: block;
+    }
+}
+
+// if <599 then dont display image
+@media (max-width: 575px) and (orientation: portrait) {
+
+    .logo.logo-primary-short {
+        display: block;
+    }
+}
+
+@media (min-width: 576px) and (max-width: 767px) and (orientation: portrait) {
+
+    .logo.logo-primary-full {
+        display: block;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 991px) and (orientation: portrait) {
+
+    .logo.logo-primary-full {
+        display: block;
+    }
+}
+
+@media (min-width: 992px) and (max-width: 1199px) and (orientation: portrait) {
+
+    .logo.logo-primary-full {
+        display: block;
+    }
+}
+
+@media (min-width: 1200px) and (orientation: portrait) {
+
+    .logo.logo-primary-full {
+        display: block;
+    }
+}
+
+.licence{
+    margin-top: 30px;
+    font-size: 0.7em;
+    text-align: end;
+    width: 70%;
+    margin-left: auto;
+}

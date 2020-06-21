@@ -1,17 +1,49 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      O aplikacji
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
+  <ion-header [translucent]="true">
     <ion-toolbar>
-      <ion-title size="large">Tab 3</ion-title>
+      <ion-title>
+        O aplikacji
+      </ion-title>
     </ion-toolbar>
   </ion-header>
 
-  <app-explore-container name="Tab 3 page"></app-explore-container>
+  <ion-card>
+    <img
+      class="logo logo-primary-full"
+      src="../../assets/primary-full.svg"
+      alt="tmdb logo"
+    />
+    <img
+      class="logo logo-primary-short"
+      src="../../assets/primary-short.svg"
+      alt="tmdb logo"
+    />
+    <img
+      class="logo logo-primary-long"
+      src="../../assets/primary-long.svg"
+      alt="tmdb logo"
+    />
+    <img
+      class="logo logo-alt-short"
+      src="../../assets/alt-short.svg"
+      alt="tmdb logo"
+    />
+    <ion-card-header>
+      <ion-card-subtitle>Adam Czerwiński</ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+      <p>
+        Celem aplikacji jest umożliwienie użytkownikowi podglądu listy filmów i
+        seriali, które rezydują w zewnętrznej bazie <b>The Movie DB</b>.
+      </p>
+      <br />
+      <p>
+        Aplikacja została stworzona na potrzeby zaliczenia przedmiotu
+        <i>Aplikacje mobilne dla systemu iOS </i>
+      </p>
+      <p class="licence">
+        This product uses the TMDb API but is not endorsed or certified by TMDb.
+      </p>
+    </ion-card-content>
+  </ion-card>
 </ion-content>
