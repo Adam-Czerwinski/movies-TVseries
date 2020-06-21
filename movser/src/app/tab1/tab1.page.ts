@@ -9,6 +9,7 @@ import {
   LoadingController,
   IonSelect,
   ModalController,
+  ToastController,
 } from '@ionic/angular';
 import { timeout, delay } from 'rxjs/operators';
 import { of } from 'rxjs';
@@ -58,20 +59,34 @@ export class Tab1Page {
     private _moviesService: MoviesService,
     public platform: Platform,
     public loadingController: LoadingController,
-    private modalController: ModalController
+    private modalController: ModalController,
+    private toastController: ToastController
   ) {
     this.state.isLoading = true;
     this.fetchMovies();
-    this._moviesService.getGenres().subscribe((re) => (this.genres = re));
+    this._moviesService.getGenres().subscribe(
+      (re) => (this.genres = re),
+      (err) => {
+        this.showToast('Wystąpił nieoczekiwany błąd');
+      }
+    );
   }
 
   async openDetails(movie: Movie): Promise<any> {
     const x = await this.modalController.create({
       component: MovieDetailsModalComponent,
-      componentProps: { 'movie': movie },
+      componentProps: { movie: movie },
     });
 
     return await x.present();
+  }
+
+  async showToast(message?: string): Promise<void> {
+    const toast = await this.toastController.create({
+      message: message ? message : this.state.errorMessage,
+      duration: 4000,
+    });
+    return toast.present();
   }
 
   private fetchMovies(data?: { page: number; genres?: number[] }): void {
@@ -94,6 +109,7 @@ export class Tab1Page {
             this.state.errorMessage = error.errors
               ? error.errors[0]
               : 'Wystąpił nieoczekiwany błąd';
+            this.showToast();
           }
         )
         .add((_) => {
@@ -158,6 +174,7 @@ export class Tab1Page {
             this.state.errorMessage = error.errors
               ? error.errors[0]
               : 'Wystąpił nieoczekiwany błąd';
+            this.showToast();
           }
         )
         .add((_) => {
@@ -190,6 +207,7 @@ export class Tab1Page {
             this.state.errorMessage = error.errors
               ? error.errors[0]
               : 'Wystąpił nieoczekiwany błąd';
+            this.showToast();
           }
         )
         .add((_) => {
@@ -214,6 +232,7 @@ export class Tab1Page {
             this.state.errorMessage = error.errors
               ? error.errors[0]
               : 'Wystąpił nieoczekiwany błąd';
+            this.showToast();
           }
         )
         .add((_) => {
