@@ -61,3 +61,19 @@ ion-item .no-data span {
 }
 
 ion-item .no-data p {}
+
+
+ion-item-option {
+    background: transparent;
+}
+
+
+ion-icon[name=star] {
+    color: gold;
+}
+
+.vote-container p {
+    display: flex;
+    flex-direction: column;
+    font-size: 1.4em;
+}

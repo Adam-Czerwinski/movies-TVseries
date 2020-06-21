@@ -27,23 +27,56 @@
         >
       </ion-select>
     </ion-item>
-    <ion-item *ngFor="let movie of movies">
-      <div class="item-container">
-        <img
-          [src]="movie.poster_path ? 'https://image.tmdb.org/t/p/w92/'+movie.poster_path : '../../assets/img-placeholder.png'"
-        />
-        <div class="item-info-container">
-          <p>
-            {{movie.title + ' (' + (movie.release_date | date: 'yyyy') + ')'}}
-          </p>
-          <p>
-            {{platform.isLandscape() ? movie.overview :
-            (movie.overview.length>130 ? (movie.overview.substring(0,130) +
-            '...') : movie.overview)}}
-          </p>
+    <ion-item-sliding *ngFor="let movie of movies">
+      <ion-item-options side="start">
+        <ion-item-option>
+          <div [ngSwitch]="true" class="vote-container">
+            <p *ngSwitchCase="movie.vote_average<3">
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star-outline"></ion-icon>
+              <ion-icon name="star-outline"></ion-icon>
+              <ion-icon name="star-outline"></ion-icon>
+            </p>
+            <p *ngSwitchCase="movie.vote_average>=3 && movie.vote_average<6">
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star-outline"></ion-icon>
+              <ion-icon name="star-outline"></ion-icon>
+            </p>
+            <p *ngSwitchCase="movie.vote_average>=6 && movie.vote_average<9">
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star-outline"></ion-icon>
+            </p>
+
+            <p *ngSwitchCase="movie.vote_average>=9">
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star"></ion-icon>
+            </p>
+          </div>
+        </ion-item-option>
+      </ion-item-options>
+      <ion-item>
+        <div class="item-container">
+          <img
+            [src]="movie.poster_path ? 'https://image.tmdb.org/t/p/w92/'+movie.poster_path : '../../assets/img-placeholder.png'"
+          />
+          <div class="item-info-container">
+            <p>
+              {{movie.title + ' (' + (movie.release_date | date: 'yyyy') + ')'}}
+            </p>
+            <p>
+              {{platform.isLandscape() ? movie.overview :
+              (movie.overview.length>130 ? (movie.overview.substring(0,130) +
+              '...') : movie.overview)}}
+            </p>
+          </div>
         </div>
-      </div>
-    </ion-item>
+      </ion-item>
+    </ion-item-sliding>
 
     <ion-item
       *ngIf="!this.state.isLoading && pagination && (!pagination.results || pagination.results.length==0)"
